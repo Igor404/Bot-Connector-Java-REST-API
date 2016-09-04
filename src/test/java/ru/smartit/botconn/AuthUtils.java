@@ -13,7 +13,7 @@ public class AuthUtils {
             InputStream is = classloader.getResourceAsStream("auth.json");
             ObjectMapper mapper = new ObjectMapper();
             res = mapper.readValue(is, AuthData.class);
-        } catch (final IOException ex) {
+        } catch (final Exception ex) {
             throw new Error(ex);
         }
         return res;

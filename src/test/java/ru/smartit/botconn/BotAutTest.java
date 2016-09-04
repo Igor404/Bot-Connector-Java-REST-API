@@ -1,11 +1,9 @@
 package ru.smartit.botconn;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class BotAutTest extends Assert {
 
@@ -23,14 +21,21 @@ public class BotAutTest extends Assert {
         } catch (final OAuthEx ex) {
             assertEquals("unauthorized_client", ex.type);
         }
+        AuthData ad = AuthUtils.getAuthData();
+        try {
+            OAuthToken token = BotAuth.reqToken(ad.clientId, ad.clientSecret);
+            assertNotNull(token.accessToken);
+        } catch (final OAuthEx ex) {
+            fail("Error getting token");
+        }
     }
 
     @Test
     public void testGetAuthData() throws IOException {
         AuthData ad = AuthUtils.getAuthData();
         assertNotNull(ad);
-        assertNotNull(ad.CLIENT_ID);
-        assertNotNull(ad.CLIENT_SECRET);
+        assertNotNull(ad.clientId);
+        assertNotNull(ad.clientSecret);
     }
 
 }
