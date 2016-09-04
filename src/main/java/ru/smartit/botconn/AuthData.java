@@ -1,4 +1,4 @@
-package ru.smartit.botconn.model;
+package ru.smartit.botconn;
 
 /**
  * Created by bolsh_000 on 9/4/2016.
